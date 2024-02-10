@@ -1,0 +1,26 @@
+question1:
+SDLC Models: Agile, Waterfall, V-Shaped, Iterative, Spiral.
+question2:
+Software Testing Life Cycle (STLC) is a systematic process that involves a series of steps or phases to ensure a software application meets its requirements and is free of defects. 
+The stages of an STLC are:
+Requirements analysis
+Test planning
+Test case development
+Test environment setup
+Test execution
+Test cycle closure
+question3:
+Schedule risk:
+The risk that the testing process will not be completed on time. This could be due to a number of factors, such as unexpected delays, insufficient resources, or changes in the scope of the project.
+Budget risk:
+The risk that the testing process will exceed the allocated budget. This could be due to a number of factors, such as unexpected costs, changes in the scope of the project, or inaccurate estimates.
+Resource risk:
+The risk that the testing team will not have the necessary resources to complete the testing process. This could include a lack of qualified personnel, insufficient hardware or software, or a lack of access to required data.
+Technical risk:
+The risk that the testing team will encounter technical problems that prevent them from completing the testing process. This could include problems with the software being tested, the testing environment, or the testing tools.
+Quality risk:
+The risk that the testing process will not be effective in finding all of the defects in the software. This could be due to a number of factors, such as inadequate test coverage, insufficient testing time, or poor testing skills.
+question4:
+Quality Assurance (QA) and Quality Control (QC) are both required to ensure high-quality, defect-free software products. The main difference between the two is that QA focuses on preventing defects, while QC focuses on identifying and addressing defects. 
+question5:
+Manual testing involves a human performing tests step by step, without the use of test scripts or tools. Automated testing uses tools, scripts, and software to execute tests automatically.
