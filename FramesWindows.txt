@@ -1,0 +1,134 @@
+//FrameOne
+package util;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FrameOne {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/iframe");
+		WebElement iframeElement = driver.findElement(By.xpath("//div[@class=\"tox-sidebar-wrap\"]/div/iframe"));
+		driver.switchTo().frame(iframeElement);
+		WebElement paraDiv = driver.findElement(By.tagName("p"));
+		paraDiv.sendKeys("Hello People");
+		driver.close();
+
+	}
+
+}
+
+
+//window
+package util;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FrameTwo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/windows");
+		String parentWindow = driver.getWindowHandle();
+		System.out.println(parentWindow);
+		WebElement clickEle = driver.findElement(By.linkText("Click Here"));
+		clickEle.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Set<String> obj = driver.getWindowHandles();
+		for(String i : obj) {
+			System.out.println(i);
+			if(!(i.equals(parentWindow))) {
+				System.out.println("This is my child window" + i);
+			}
+		}
+		
+		driver.quit();
+	}
+
+}
+
+//frameTwo
+package util;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FrameThree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		FrameThree obj = new FrameThree();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://the-internet.herokuapp.com/nested_frames");
+		driver.switchTo().frame("frame-top");
+		driver.switchTo().frame("frame-left");
+		obj.threadMethod();
+		WebElement left = driver.findElement(By.xpath("/html/body"));
+		String leftText = left.getText();
+		System.out.println(leftText);
+		obj.threadMethod();
+		obj.textValidation("LEFT", leftText);
+		driver.switchTo().parentFrame();
+		obj.threadMethod();
+		driver.switchTo().frame("frame-middle");
+		obj.threadMethod();
+		WebElement middle = driver.findElement(By.xpath("/html/body"));
+		String middleText = middle.getText();
+		System.out.println(middleText);
+		obj.textValidation("MIDDLE", middleText);
+		obj.threadMethod();
+		driver.switchTo().parentFrame();
+		obj.threadMethod();
+		driver.switchTo().frame("frame-right");
+		obj.threadMethod();
+		WebElement right = driver.findElement(By.xpath("/html/body"));
+		String rightText = right.getText();
+		System.out.println(rightText);
+		obj.textValidation("RIGHT", rightText);
+		obj.threadMethod();
+		driver.switchTo().parentFrame();
+		driver.switchTo().parentFrame();
+		obj.threadMethod();
+		driver.switchTo().frame("frame-bottom");
+		obj.threadMethod();
+		WebElement bottom = driver.findElement(By.xpath("/html/body"));
+		String bottomText = bottom.getText();
+		System.out.println(bottomText);
+		obj.textValidation("BOTTOM", bottomText);
+
+	}
+	public void threadMethod() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void textValidation(String actual, String Expected) {
+		if(actual.equals(Expected)) {
+			System.out.println(actual + " equals " + Expected);
+		}
+	}
+}
+
