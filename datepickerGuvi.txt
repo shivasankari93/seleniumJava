@@ -1,0 +1,81 @@
+//datepicker
+package util;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class pickerIframe {
+	static String date = "22";
+	static String monthExpected = "March";
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://jqueryui.com/datepicker/");
+		driver.switchTo().frame(0);
+		WebElement datePicker = driver.findElement(By.xpath("//input[@id=\"datepicker\"]"));
+		datePicker.click();
+		WebElement next = driver.findElement(By.xpath("//a[@class=\"ui-datepicker-next ui-corner-all\"]"));
+		WebElement month = driver.findElement(By.xpath("//span[@class=\"ui-datepicker-month\"]"));
+		if(!(monthExpected.equals(month))) {
+			next.click();
+		}
+		WebElement tbody = driver.findElement(By.tagName("tbody"));
+		List<WebElement> tabrow = tbody.findElements(By.tagName("tr"));
+		WebElement temp1 = tabrow.get(3);
+		System.out.println(temp1.getText());
+		List<WebElement> tabdata = temp1.findElements(By.tagName("td"));
+		WebElement temp2 = tabdata.get(5);
+		System.out.println(temp2.getText());
+		temp2.click();
+	}
+
+}
+
+
+//guvi
+
+package util;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class guviTask {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.guvi.in/register/");
+		WebElement signup = driver.findElement(By.xpath("//li[@class=\"nav-item python-signup-btn\"]/a"));
+		signup.click();
+		WebElement name = driver.findElement(By.xpath("//input[@id=\"name\"]"));
+		name.sendKeys("test");
+		WebElement email = driver.findElement(By.xpath("//input[@id=\"email\"]"));
+		email.sendKeys("testtesttuser@gmail.com");
+		WebElement password = driver.findElement(By.xpath("//input[@id=\"password\"]"));
+		password.sendKeys("Akshara-nov6");
+		WebElement number = driver.findElement(By.xpath("//input[@id=\"mobileNumber\"]"));
+		number.sendKeys("1234567890");
+		WebElement signupbtn = driver.findElement(By.xpath("//a[@class=\"btn signup-btn\"]"));
+		signupbtn.click();
+		WebElement login = driver.findElement(By.xpath("//a[@class=\"login\"]"));
+		login.click();
+		WebElement emailLogin = driver.findElement(By.xpath("//input[@id=\"email\"]"));
+		emailLogin.sendKeys("testtesttuser@gmail.com");
+		WebElement passwordLogin = driver.findElement(By.xpath("//input[@id=\"password\"]"));
+		passwordLogin.sendKeys("Akshara-nov6");
+		WebElement loginbtn = driver.findElement(By.xpath("//a[@id=\"login-btn\"]"));
+		loginbtn.click();
+		
+	}
+
+}
