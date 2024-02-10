@@ -1,0 +1,28 @@
+package util;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public final class LocatorTask {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.guvi.in/register");
+		WebElement id = driver.findElement(By.id("name"));
+		id.sendKeys("test");
+		WebElement email = driver.findElement(By.xpath("//input[@id=\"email\"]"));
+		email.sendKeys("test@gmail.com");
+		WebElement password = driver.findElement(By.cssSelector("#password"));
+		password.sendKeys("password-nov6");
+		WebElement value = driver.findElement(By.tagName(null));
+		value.click();
+		WebElement classBtnValue = driver.findElement(By.className("a"));
+		classBtnValue.click();
+		
+	}
+
+}
