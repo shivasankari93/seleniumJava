@@ -1,0 +1,51 @@
+package util;
+
+import java.awt.Desktop.Action;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+
+public class SnapDealTask {
+	
+	
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.snapdeal.com");
+		SnapDealTask obj = new SnapDealTask();
+		WebElement signinButton = driver.findElement(By.xpath("//*[@class=\"accountUserName col-xs-12 reset-padding\"]"));
+		WebElement registerButton = driver.findElement(By.xpath("//p[@class=\"newUser\"]/following-sibling::span"));
+		WebElement loginButton = driver.findElement(By.xpath("//span[@class=\"accountBtn btn rippleWhite\"]/a"));
+		WebElement logoutButton = driver.findElement(By.xpath("//li[@class=\"accountInfoNonLoggedIn logoutNew\"]"));
+		Actions act = new Actions(driver);
+		act.moveToElement(signinButton).build().perform();
+		obj.threadMethod();
+		act.click();
+		obj.threadMethod();
+		registerButton.click();
+		obj.threadMethod();
+		act.moveToElement(signinButton).build().perform();
+		obj.threadMethod();
+		logoutButton.click();
+		act.moveToElement(signinButton).build().perform();
+		obj.threadMethod();
+		loginButton.click();
+		
+		
+	}
+	public void threadMethod() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
