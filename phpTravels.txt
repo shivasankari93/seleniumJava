@@ -1,0 +1,71 @@
+//phpTravels
+package util;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+
+public class PhpTravelTask {
+//	WebDriver driver = null;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		PhpTravelTask obj = new PhpTravelTask();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://phptravels.com/demo/");
+		WebElement firstName = driver.findElement(By.xpath("//input[@name=\"first_name\"]"));
+		firstName.sendKeys("test");
+		obj.threadMethod();
+		WebElement lastName = driver.findElement(By.xpath("//input[@name=\"last_name\"]"));
+		lastName.sendKeys("user");
+		obj.threadMethod();
+		WebElement busiName = driver.findElement(By.xpath("//input[@name=\"business_name\"]"));
+		busiName.sendKeys("organization");
+		obj.threadMethod();
+		WebElement email = driver.findElement(By.xpath("//input[@name=\"email\"]"));
+		email.sendKeys("test@gmail.com");
+		obj.threadMethod();
+		String valueOne = driver.findElement(By.xpath("//span[@id=\"numb1\"]")).getText();
+		String valueTwo = driver.findElement(By.xpath("//span[@id=\"numb2\"]")).getText();
+		int a = Integer.parseInt(valueOne);
+		int b = Integer.parseInt(valueTwo);
+		System.out.println(a+b);
+		int sum = a+b;
+		String sumAsString = String.valueOf(sum);
+		WebElement outputValue = driver.findElement(By.xpath("//input[@id=\"number\"]"));
+		outputValue.sendKeys(sumAsString);
+
+	obj.threadMethod();
+		WebElement button = driver.findElement(By.xpath("//button[@id=\"demo\"]"));
+		button.click();
+		obj.threadMethod();
+		TakesScreenshot tc = (TakesScreenshot)driver;
+		File Source = tc.getScreenshotAs(OutputType.FILE);
+		File destination = new File(System.getProperty("user.dir") + "/screenshots/"  + "name.png");
+		try {
+			FileHandler.copy(Source, destination);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void threadMethod() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+}
