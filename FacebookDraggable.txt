@@ -1,0 +1,101 @@
+//Facebook
+package util;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class FacebookTask {
+
+	public static void main(String[] args) {
+		FacebookTask obj = new FacebookTask();
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.facebook.com/");
+		String actualLink = "https://www.facebook.com/";
+		String expectedLink = driver.getCurrentUrl();
+		if(actualLink.equals(expectedLink)) {
+			System.out.println("Expected link is open");
+		}
+		WebElement accountButton = driver.findElement(By.xpath("//form/child::div[5]/a"));
+		accountButton.click();
+		obj.threadMethod();
+		WebElement firstName = driver.findElement(By.xpath("//input[@name= 'firstname']"));
+		firstName.sendKeys("Test");
+		obj.threadMethod();
+		WebElement lastName = driver.findElement(By.xpath("//input[@name= 'lastname']"));
+		lastName.sendKeys("User");
+		obj.threadMethod();
+		WebElement email = driver.findElement(By.xpath("//input[@name= 'reg_email__']"));
+		email.sendKeys("testuser@test.com");
+		obj.threadMethod();
+		WebElement emailAgain = driver.findElement(By.xpath("//div[@class=\"large_form\"]/child::div[3]/div/div/div/child::input"));
+		emailAgain.sendKeys("testuser@test.com");
+		obj.threadMethod();
+		WebElement password = driver.findElement(By.xpath("//input[@name= 'reg_passwd__']"));
+		password.sendKeys("Akshara-Nov6");
+		obj.threadMethod();
+		WebElement selectDay = driver.findElement(By.xpath("//select[@id=\"day\"]"));
+		selectDay.click();
+		Select sel = new Select(selectDay);
+		sel.selectByValue("11");
+		obj.threadMethod();
+		WebElement selectMonth = driver.findElement(By.xpath("//select[@id=\"month\"]"));
+		selectMonth.click();
+		Select selm = new Select(selectMonth);
+		selm.selectByVisibleText("May");
+		obj.threadMethod();
+		WebElement selectYear = driver.findElement(By.xpath("//select[@id=\"year\"]"));
+		selectYear.click();
+		Select sely = new Select(selectYear);
+		sely.selectByIndex(39);
+		obj.threadMethod();
+		WebElement radio = driver.findElement(By.xpath("//label[text() = \"Female\"]/following-sibling::input"));
+		radio.click();
+		obj.threadMethod();
+		WebElement signUpButton = driver.findElement(By.xpath("//button[@name= 'websubmit']"));
+		signUpButton.click();
+		
+		
+
+	}
+	public void threadMethod() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+//Draggable 
+package util;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Draggable {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://jqueryui.com/droppable/");
+		driver.switchTo().frame(0);
+		WebElement draggable = driver.findElement(By.xpath("//div[@id=\"draggable\"]"));
+		WebElement droppable = driver.findElement(By.xpath("//div[@id=\"droppable\"]"));
+		Actions act = new Actions(driver);
+		act.dragAndDrop(draggable, droppable).build().perform();
+
+	}
+
+}
